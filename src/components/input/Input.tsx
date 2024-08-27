@@ -1,13 +1,12 @@
-import BottomSheet from '@gorhom/bottom-sheet';
 import {
   TextInput,
   View,
   TextInputProps,
   StyleSheet,
   Pressable,
-  Text
-} from 'react-native';
-import { Country } from '../../types/Country';
+  Text,
+} from "react-native";
+import { Country } from "../../types/Country";
 
 export interface InputProps extends TextInputProps {
   onPressChangePhone: () => void;
@@ -38,30 +37,30 @@ export const Input = (props: InputProps) => {
 const styles = StyleSheet.create({
   label: {
     fontSize: 16,
-    marginBottom: 8
+    marginBottom: 8,
   },
   input: {
-    width: '70%',
+    width: "70%",
     height: 50,
     borderWidth: 0.5,
-    borderColor: 'grey',
+    borderColor: "grey",
     borderRadius: 12,
     borderStartStartRadius: 0,
     borderEndStartRadius: 0,
-    padding: 12
+    padding: 12,
   },
   selectButton: {
     borderWidth: 0.5,
     borderStartStartRadius: 12,
     borderEndStartRadius: 12,
-    borderColor: 'grey',
-    width: '30%',
-    alignItems: 'center',
-    justifyContent: 'center'
+    borderColor: "grey",
+    width: "30%",
+    alignItems: "center",
+    justifyContent: "center",
   },
   container: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    width: '100%'
-  }
+    flexDirection: "row",
+    justifyContent: "center",
+    width: "100%",
+  },
 });

@@ -1,8 +1,14 @@
-import { forwardRef, useImperativeHandle, useRef } from 'react';
-import { BottomSheet, BottomSheetRef } from '../BottomSheet';
-import { TouchableOpacity, View, Text } from 'react-native';
-import { countries } from '../../consts/countries';
-import { Country } from '../../types/Country';
+import {
+  forwardRef,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { BottomSheet, BottomSheetRef } from "../BottomSheet";
+import { TouchableOpacity, View, Text, TextInput } from "react-native";
+import { countries as allCountries } from "../../consts/countries";
+import { Country } from "../../types/Country";
 
 interface PhoneInputBottomSheetProps {
   onSelectCountry: (country: Country) => void;
@@ -21,33 +27,58 @@ export const PhoneInputBottomSheet = forwardRef(
 
         close: () => {
           bottomSheetRef.current?.close();
-        }
+        },
       }),
       []
+    );
+
+    const [search, setSearch] = useState("");
+    const countries = useMemo(
+      () =>
+        allCountries.filter(
+          (country) =>
+            country.name.toLowerCase().includes(search.toLowerCase()) ||
+            country.dial_code.includes(search) ||
+            country.code.toLowerCase().includes(search.toLowerCase())
+        ),
+      [search]
     );
 
     return (
       <BottomSheet
         ref={bottomSheetRef}
-        snapPoints={['50']}
-        enableDynamicSizing={false}>
+        snapPoints={["50"]}
+        enableDynamicSizing={false}
+      >
         <View style={{ gap: 24, paddingHorizontal: 16 }}>
+          <TextInput
+            placeholder="Search country"
+            style={{
+              borderWidth: 0.5,
+              borderColor: "grey",
+              borderRadius: 12,
+              padding: 16,
+              marginBottom: 16,
+            }}
+            onChange={(e) => setSearch(e.nativeEvent.text)}
+          />
           {countries.map((country) => (
             <View key={country.code}>
               <TouchableOpacity
                 onPress={() => onSelectCountry(country)}
                 style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  alignContent: 'center'
-                }}>
-                <View style={{ flexDirection: 'row', gap: 8 }}>
-                  <Text style={{ fontSize: 18, fontWeight: '400' }}>
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  alignContent: "center",
+                }}
+              >
+                <View style={{ flexDirection: "row", gap: 8 }}>
+                  <Text style={{ fontSize: 18, fontWeight: "400" }}>
                     {country.emoji}
                   </Text>
                   <Text style={{ fontSize: 18 }}>{country.name}</Text>
-                  <Text style={{ fontSize: 18, fontWeight: '700' }}>
+                  <Text style={{ fontSize: 18, fontWeight: "700" }}>
                     {country.dial_code}
                   </Text>
                 </View>
@@ -57,7 +88,7 @@ export const PhoneInputBottomSheet = forwardRef(
                       height: 24,
                       width: 24,
                       borderWidth: 1,
-                      borderRadius: 24
+                      borderRadius: 24,
                     }}
                   />
                 </View>
@@ -65,9 +96,9 @@ export const PhoneInputBottomSheet = forwardRef(
               <View
                 style={{
                   height: 1,
-                  width: '100%',
-                  backgroundColor: '#ccc',
-                  marginTop: 24
+                  width: "100%",
+                  backgroundColor: "#ccc",
+                  marginTop: 24,
                 }}
               />
             </View>

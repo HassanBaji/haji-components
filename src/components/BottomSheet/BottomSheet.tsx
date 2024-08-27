@@ -4,16 +4,16 @@ import React, {
   useCallback,
   useImperativeHandle,
   useRef,
-  useState
-} from 'react';
+  useState,
+} from "react";
 import BS, {
   BottomSheetBackdrop,
   BottomSheetBackdropProps,
   BottomSheetScrollView,
-  BottomSheetProps as BSProps
-} from '@gorhom/bottom-sheet';
+  BottomSheetProps as BSProps,
+} from "@gorhom/bottom-sheet";
 
-import { BackHandler, Keyboard, StyleSheet } from 'react-native';
+import { BackHandler, Keyboard, StyleSheet } from "react-native";
 
 interface BottomSheetProps extends BSProps {
   children: ReactNode;
@@ -48,7 +48,7 @@ const BottomSheet = forwardRef<BottomSheetRef, BottomSheetProps>(
         },
         close: () => {
           bottomSheetRef.current?.close();
-        }
+        },
       }),
       []
     );
@@ -76,7 +76,7 @@ const BottomSheet = forwardRef<BottomSheetRef, BottomSheetProps>(
         }
       };
       const backHandler = BackHandler.addEventListener(
-        'hardwareBackPress',
+        "hardwareBackPress",
         backAction
       );
       return () => backHandler.remove();
@@ -87,7 +87,7 @@ const BottomSheet = forwardRef<BottomSheetRef, BottomSheetProps>(
         return (
           <BottomSheetBackdrop
             {...backdropProps}
-            pressBehavior='close'
+            pressBehavior="close"
             disappearsOnIndex={-1}
             appearsOnIndex={0}
           />
@@ -105,15 +105,15 @@ const BottomSheet = forwardRef<BottomSheetRef, BottomSheetProps>(
       <BS
         ref={bottomSheetRef}
         index={INITIAL_INDEX}
-        snapPoints={snapPoints ?? ['30%']}
+        snapPoints={snapPoints ?? ["30%"]}
         enablePanDownToClose={true}
         enableDynamicSizing={true}
-        handleIndicatorStyle={{ display: 'none' }}
+        handleIndicatorStyle={{ display: "none" }}
         onClose={onCloseBottomSheet}
         onChange={onSheetChange}
         backdropComponent={renderBackdrop}
-        // style={styles.container}
-        {...rest}>
+        {...rest}
+      >
         <BottomSheetScrollView style={styles.container}>
           {children}
         </BottomSheetScrollView>
@@ -126,15 +126,15 @@ export default BottomSheet;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
-    shadowColor: '#000',
+    backgroundColor: "white",
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 2
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
 
-    elevation: 10
-  }
+    elevation: 10,
+  },
 });
