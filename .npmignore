@@ -1,0 +1,7 @@
+.storybooks/
+.expo/
+.github/
+.vscode/
+ios/
+android/
+assets/
