@@ -2,6 +2,10 @@
 
 Haji Phone Input is a customizable phone input component library for React Native applications. It utilizes `@gorhom/bottom-sheet` for selecting the country code and `react-native-reanimated` for smooth animations, offering a seamless user experience for entering phone numbers.
 
+## Demo
+
+<img src="https://github.com/hajidev/haji-phone-input/assets/input-example-1.png" width="300">
+
 ## Features
 
 - **Country Code Selection**: Easily select a country code using a bottom sheet.
