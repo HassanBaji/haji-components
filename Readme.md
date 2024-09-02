@@ -4,7 +4,7 @@ Haji Phone Input is a customizable phone input component library for React Nativ
 
 ## Demo
 
-<img src="https://github.com/hajidev/haji-phone-input/assets/input-example-1.png" width="300">
+<img src="https://github.com/HassanBaji/haji-phone-input/blob/main/assets/input-example-1.png" width="300">
 
 ## Features
 
