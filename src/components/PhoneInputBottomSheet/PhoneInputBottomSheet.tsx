@@ -12,11 +12,13 @@ import { Country } from "../../types/Country";
 
 interface PhoneInputBottomSheetProps {
   onSelectCountry: (country: Country) => void;
+  selectedCountry?: Country;
+  selectedRadioColor?: string;
 }
 
 export const PhoneInputBottomSheet = forwardRef(
   (props: PhoneInputBottomSheetProps, ref) => {
-    const { onSelectCountry } = props;
+    const { onSelectCountry, selectedCountry, selectedRadioColor } = props;
     const bottomSheetRef = useRef<BottomSheetRef>(null);
     useImperativeHandle(
       ref,
@@ -89,6 +91,10 @@ export const PhoneInputBottomSheet = forwardRef(
                       width: 24,
                       borderWidth: 1,
                       borderRadius: 24,
+                      backgroundColor:
+                        selectedCountry?.code === country.code
+                          ? selectedRadioColor ?? "blue"
+                          : "white",
                     }}
                   />
                 </View>
